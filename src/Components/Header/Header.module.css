@@ -1,0 +1,54 @@
+.header {
+    background-color: #F2ECE2;
+    position: fixed;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 9999;
+}
+
+.header span {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.header a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.header span {
+    padding: 0 70px;
+}
+
+.header ul {
+    list-style: none;
+}
+
+.header ul li {
+    display: inline-block;
+    margin: 10px;
+}
+
+.header ul li a {
+    text-decoration: none;
+    padding: 5px 10px;
+    color: #2D1312;
+}
+
+.header div {
+    padding: 0 70px;
+}
+
+.header div button {
+    background-color: #2D1312;
+    border: none;
+    border-radius: 12px;
+    padding: 8px 23px;
+}
+
+.header div button a {
+    color: #fff;
+}
