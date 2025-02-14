@@ -1,16 +1,48 @@
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ShoppingCart } from 'lucide-react';
 
-const MenuSection = ({ title, items }: { title: string; items: Array<{ name: string; description?: string; price: string }> }) => (
-  <div className="mb-12">
-    <h2 className="text-2xl font-bold mb-6 text-orange-500">{title}</h2>
-    <div className="space-y-4">
+const pizzas = [
+  {
+    name: "Margherita",
+    description: "Molho de tomate, mussarela, manjericão fresco",
+    price: "49,90"
+  },
+  {
+    name: "Pepperoni",
+    description: "Molho de tomate, mussarela, pepperoni importado",
+    price: "59,90"
+  },
+  {
+    name: "Quatro Queijos",
+    description: "Mussarela, gorgonzola, parmesão, catupiry",
+    price: "54,90"
+  },
+  {
+    name: "Portuguesa",
+    description: "Mussarela, presunto, ovos, cebola, azeitonas",
+    price: "52,90"
+  }
+];
+
+const MenuSection = ({ title, items }: { title: string; items: Array<{ name: string; description: string; price: string }> }) => (
+  <div className="mb-8">
+    <h2 className="text-xl font-bold mb-4 text-stone-800">{title}</h2>
+    <div className="grid gap-4">
       {items.map((item, index) => (
-        <div key={index} className="flex justify-between items-start border-b border-stone-200 pb-4">
-          <div>
-            <h3 className="font-semibold text-lg">{item.name}</h3>
-            {item.description && <p className="text-gray-600 text-sm mt-1">{item.description}</p>}
+        <div key={index} className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300">
+          <div className="flex justify-between items-start gap-4">
+            <div className="flex-1">
+              <h3 className="font-medium text-base">{item.name}</h3>
+              <p className="text-gray-600 text-sm mt-1">{item.description}</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="flex-shrink-0 text-[11px] font-medium bg-orange-100/80 text-orange-700 px-2 py-0.5 rounded-full">
+                R$ {item.price}
+              </span>
+              <button className="flex-shrink-0 bg-orange-500/90 hover:bg-orange-500 text-white rounded-full p-1.5 transition-all duration-300">
+                <ShoppingCart className="w-4 h-4" />
+              </button>
+            </div>
           </div>
-          <span className="font-semibold text-lg ml-4">{item.price}</span>
         </div>
       ))}
     </div>
@@ -18,67 +50,34 @@ const MenuSection = ({ title, items }: { title: string; items: Array<{ name: str
 );
 
 function Cardapio() {
-  const pizzas = [
-    { name: "Margherita", description: "Molho de tomate, mussarela de búfala, manjericão fresco", price: "R$ 45" },
-    { name: "Pepperoni", description: "Pepperoni italiano, mussarela, orégano", price: "R$ 52" },
-    { name: "Quatro Queijos", description: "Mussarela, gorgonzola, parmesão, provolone", price: "R$ 48" },
-    { name: "Calabresa", description: "Calabresa fatiada, cebola, mussarela", price: "R$ 42" },
-    { name: "Portuguesa", description: "Presunto, ovos, cebola, ervilha, mussarela", price: "R$ 50" },
-    { name: "Vegetariana", description: "Abobrinha, berinjela, pimentão, cogumelos, mussarela", price: "R$ 46" },
-    { name: "Frango com Catupiry", description: "Frango desfiado, catupiry original, milho, mussarela", price: "R$ 48" },
-    { name: "Napolitana", description: "Molho de tomate, mussarela, tomates frescos, alho, manjericão", price: "R$ 44" }
-  ];
-
-  const calzones = [
-    { name: "Presunto e Queijo", description: "Presunto, mussarela, orégano", price: "R$ 40" },
-    { name: "Frango", description: "Frango desfiado, catupiry, mussarela", price: "R$ 42" },
-    { name: "Vegetariano", description: "Legumes grelhados, mussarela", price: "R$ 38" }
-  ];
-
-  const bebidas = [
-    { name: "Refrigerante 350ml", price: "R$ 6" },
-    { name: "Água Mineral 500ml", price: "R$ 4" },
-    { name: "Suco Natural 400ml", price: "R$ 8" },
-    { name: "Cerveja Artesanal 600ml", price: "R$ 18" },
-    { name: "Vinho Tinto (Taça)", price: "R$ 20" },
-    { name: "Vinho Branco (Taça)", price: "R$ 20" }
-  ];
-
-  const sobremesas = [
-    { name: "Tiramisù", description: "Clássica sobremesa italiana com café e mascarpone", price: "R$ 25" },
-    { name: "Petit Gateau", description: "Com sorvete de creme", price: "R$ 28" },
-    { name: "Cannoli", description: "Recheado com creme de ricota", price: "R$ 15" }
-  ];
-
   return (
     <div className="min-h-screen bg-stone-50">
-      <div className="bg-stone-900 text-white py-6">
-        <div className="container mx-auto px-4">
-          <a href="/" className="inline-flex items-center text-orange-500 hover:text-orange-400 mb-4">
-            <ArrowLeft className="w-5 h-5 mr-2" />
+      {/* Header com botão voltar */}
+      <div className="bg-stone-900 text-white py-4">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <a 
+            href="/" 
+            className="inline-flex items-center text-orange-400 hover:text-orange-300 transition-colors mb-2"
+          >
+            <ArrowLeft className="w-5 h-5 mr-1" />
             Voltar
           </a>
-          <h1 className="text-4xl font-bold">Cardápio</h1>
+          <h1 className="text-2xl font-bold">Cardápio</h1>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
-          <MenuSection title="Pizzas" items={pizzas} />
-          <MenuSection title="Calzones" items={calzones} />
-          <MenuSection title="Bebidas" items={bebidas} />
-          <MenuSection title="Sobremesas" items={sobremesas} />
-        </div>
+      {/* Conteúdo principal */}
+      <div className="container mx-auto px-4 py-8 max-w-3xl">
+        <MenuSection title="Pizzas" items={pizzas} />
 
-        <div className="mt-12 max-w-4xl mx-auto bg-orange-50 rounded-lg p-6 border border-orange-200">
-          <h3 className="text-lg font-semibold text-orange-800 mb-2">Informações Importantes</h3>
-          <ul className="space-y-2 text-orange-700">
-            <li>• Pizzas disponíveis nos tamanhos: Média (30cm) e Grande (35cm)</li>
+        {/* Informações adicionais */}
+        <div className="mt-8 bg-orange-50 rounded-lg p-4 border border-orange-100 text-sm">
+          <h3 className="font-semibold text-orange-800 mb-2">Informações</h3>
+          <ul className="space-y-1 text-orange-700">
+            <li>• Pizzas nos tamanhos: M (30cm) e G (35cm)</li>
             <li>• Valores referentes ao tamanho médio</li>
             <li>• Acréscimo de R$ 10 para pizzas grandes</li>
             <li>• Borda recheada: + R$ 8</li>
-            <li>• Ingredientes extras: + R$ 5 cada</li>
-            <li>• Tempo médio de entrega: 45-60 minutos</li>
           </ul>
         </div>
       </div>

@@ -1,0 +1,17 @@
+:root {
+  /* Paleta de cores sofisticada */
+  --color-primary: #2C1810;
+  --color-secondary: #E5DCD3;
+  --color-accent: #C0A080;
+  --color-bronze: #CD7F32;
+  --color-dark: #2C2C2C;
+  --color-light: #F5F2EA;
+  
+  /* Gradientes */
+  --gradient-rustic: linear-gradient(135deg, var(--color-primary), var(--color-bronze));
+  --gradient-elegant: linear-gradient(to right, var(--color-accent), var(--color-bronze));
+  
+  /* Sombras */
+  --shadow-soft: 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-elegant: 0 8px 24px rgba(44, 24, 16, 0.12);
+} 

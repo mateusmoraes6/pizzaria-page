@@ -1,11 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X, Pizza } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed w-full bg-stone-900/95 text-white z-50">
+    <nav className={`fixed w-full bg-stone-900/95 text-white z-50 ${isScrolled ? 'navbar-scrolled' : ''}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
