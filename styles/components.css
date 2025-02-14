@@ -1,0 +1,321 @@
+.card {
+  background: var(--color-light);
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: var(--shadow-elegant);
+  border-radius: 12px;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(44, 24, 16, 0.15);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/textures/subtle-paper.png');
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.button {
+  background: var(--gradient-rustic);
+  color: var(--color-light);
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-accent);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.button:hover::before {
+  left: 100%;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.5rem 0;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.navbar-scrolled {
+  background: rgba(245, 242, 234, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1rem 0;
+  box-shadow: 0 2px 20px rgba(44, 24, 16, 0.08);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.logo-text {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  font-family: var(--font-accent);
+  color: var(--color-dark);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-elegant);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-button {
+  background: var(--gradient-rustic);
+  color: var(--color-light);
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+/* Responsividade para cards */
+@media (max-width: 768px) {
+  .card {
+    padding: 1.5rem;
+  }
+  
+  .navbar-container {
+    padding: 0 1rem;
+  }
+  
+  .logo-text {
+    font-size: 1.5rem;
+  }
+  
+  .nav-link {
+    font-size: 0.9rem;
+  }
+  
+  .nav-button {
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+/* Menu Mobile Aprimorado */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 80%;
+  max-width: 300px;
+  background: var(--color-dark);
+  padding: 2rem;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 999;
+}
+
+.mobile-menu-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Grid Responsivo */
+.responsive-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  padding: 1rem;
+}
+
+@media (max-width: 640px) {
+  .responsive-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* Botão Flutuante para Mobile */
+.floating-action-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gradient-rustic);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 900;
+}
+
+@media (max-width: 768px) {
+  .floating-action-button {
+    display: flex;
+  }
+}
+
+/* Botões principais */
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2rem);
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.primary-button.orange {
+  background: var(--color-accent);
+  color: white;
+}
+
+.primary-button.orange:hover {
+  background: #ff6b1a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 26, 0.25);
+}
+
+.primary-button.white {
+  background: white;
+  color: var(--color-accent);
+}
+
+.primary-button.white:hover {
+  background: #fff5eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 26, 0.15);
+}
+
+@media (max-width: 640px) {
+  .primary-button {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+}
+
+.orange-icon {
+  color: #f97316; /* cor laranja do Tailwind (orange-500) */
+}
+
+/* Estilização da Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;  /* Mais fino */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;  /* Track transparente */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d6d3d1;  /* stone-300 - cor mais suave */
+  border-radius: 100vh;
+  opacity: 0.8;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a29e;  /* stone-400 - um pouco mais escuro no hover */
+}
+
+/* Para Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d6d3d1 transparent;
+}
+
+/* Versão ainda mais discreta para mobile */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #e7e5e4;  /* stone-200 - ainda mais suave em mobile */
+  }
+}
+
+/* Suavizar o scroll da página */
+html {
+  scroll-behavior: smooth;
+}
