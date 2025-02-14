@@ -290,6 +290,15 @@
 
 ::-webkit-scrollbar-thumb {
   background: #d6d3d1;  
+  width: 6px;  
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;  
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d6d3d1;  
   border-radius: 100vh;
   opacity: 0.8;
 }
@@ -304,6 +313,7 @@
   scrollbar-color: #d6d3d1 transparent;
 }
 
+/* Versão ainda mais discreta para mobile */
 @media (max-width: 768px) {
   ::-webkit-scrollbar {
     width: 3px;
@@ -311,6 +321,7 @@
   
   ::-webkit-scrollbar-thumb {
     background: #e7e5e4;  
+    background: #e7e5e4;  /* stone-200 - ainda mais suave em mobile */
   }
 }
 

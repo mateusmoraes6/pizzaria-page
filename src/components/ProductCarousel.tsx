@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ChevronLeft, ChevronRight, ShoppingCart } from 'lucide-react';
 
 interface Product {
@@ -11,31 +11,7 @@ interface Product {
 
 const ProductCarousel = ({ products }: { products: Product[] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-  // Efeito infinito
   const extendedProducts = [...products, ...products, ...products];
-
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-    
-    const interval = setInterval(() => {
-      handleNext();
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [isAutoPlaying]);
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => {
-      const next = prev + 1;
-      // Quando chegar no final do array estendido, voltar para o conjunto do meio
-      if (next >= products.length * 2) {
-        return products.length;
-      }
-      return next;
-    });
-  };
 
   const handlePrev = () => {
     setCurrentIndex((prev) => {
@@ -43,6 +19,17 @@ const ProductCarousel = ({ products }: { products: Product[] }) => {
       // Quando chegar no início do array estendido, ir para o conjunto do meio
       if (next < 0) {
         return products.length - 1;
+      }
+      return next;
+    });
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => {
+      const next = prev + 1;
+      // Quando chegar no final do array estendido, ir para o conjunto do meio
+      if (next >= extendedProducts.length) {
+        return products.length;
       }
       return next;
     });
@@ -91,20 +78,14 @@ const ProductCarousel = ({ products }: { products: Product[] }) => {
       </div>
 
       <button 
-        onClick={() => {
-          handlePrev();
-          setIsAutoPlaying(false);
-        }}
+        onClick={() => handlePrev()}
         className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-white/80 rounded-full shadow-lg hover-effect"
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
 
       <button 
-        onClick={() => {
-          handleNext();
-          setIsAutoPlaying(false);
-        }}
+        onClick={() => handleNext()}
         className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-white/80 rounded-full shadow-lg hover-effect"
       >
         <ChevronRight className="w-6 h-6" />
@@ -114,10 +95,7 @@ const ProductCarousel = ({ products }: { products: Product[] }) => {
         {products.map((_, idx) => (
           <button
             key={idx}
-            onClick={() => {
-              setCurrentIndex(idx + products.length);
-              setIsAutoPlaying(false);
-            }}
+            onClick={() => setCurrentIndex(idx + products.length)}
             className={`w-2 h-2 rounded-full transition-all ${
               (currentIndex % products.length) === idx ? 'bg-orange-500 w-4' : 'bg-gray-300'
             }`}
