@@ -13,7 +13,7 @@ const ProductCarousel = ({ products }: { products: Product[] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  // Duplicar produtos para efeito infinito
+  // Efeito infinito
   const extendedProducts = [...products, ...products, ...products];
 
   useEffect(() => {
